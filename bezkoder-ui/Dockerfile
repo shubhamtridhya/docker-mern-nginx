@@ -3,6 +3,7 @@ FROM node:14 as build-stage
 
 WORKDIR /bezkoder-ui
 COPY package.json .
+RUN npm i
 RUN npm install
 COPY . .
 
@@ -11,6 +12,7 @@ ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
 RUN npm run build
 
+EXPOSE 2000-9000
 # Stage 2
 FROM nginx:1.17.0-alpine
 
